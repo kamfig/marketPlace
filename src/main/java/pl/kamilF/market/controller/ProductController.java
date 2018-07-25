@@ -25,6 +25,7 @@ public class ProductController {
     public String add(ModelMap modelMap){
         modelMap.put("product", new Product());
         modelMap.put("categories",categoryDao.findAll());
+
         return "product/add";
     }
 
@@ -37,4 +38,15 @@ public class ProductController {
         productDao.save(product);
         return "product/show";
     }
+
+    @GetMapping("/product/all")
+
+    public String findAll(ModelMap modelMap){
+
+        modelMap.addAttribute("products",productDao.findAll());
+
+        return "product/all";
+
+    }
+
 }
